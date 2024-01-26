@@ -35,7 +35,10 @@ export default function MainLayout() {
         }
     };
     const handleParse = () => {
-        if (!file) return alert("Enter a valid file");
+      if (!file) {
+        setError("Please select a valid file!!!");
+        return;
+    }
         setLoading(true);
         const reader = new FileReader();
         reader.onload = async ({ target }) => {
@@ -78,6 +81,7 @@ export default function MainLayout() {
   return (
     <div className="main-layout-container">
       <div className="top-heading">
+        
         <div className="heading-text">Upload CSV</div>
         <input
           onChange={handleFileChange}
@@ -107,6 +111,7 @@ export default function MainLayout() {
             </div>
             </div>
             <div className="upload-button-container">
+            {error && <p className="error-message">{error}</p>}
             <button className={isUploaded ? "uploaded-button":"upload-button"} onClick={handleParse}><span>{!loading ? <img src={uploadiconimage} className="upload-icon-image" />: ""}</span>{loading ? <LoadingSpinner/> : "Upload"}</button>
             </div>
         </div>

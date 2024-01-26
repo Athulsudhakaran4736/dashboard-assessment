@@ -23,6 +23,10 @@
     font-weight: 600;
     margin-left: 20px;
 }
+.error-message{
+    text-align: center;
+    color: red;
+}
 .side-heading{
     display: flex;
     align-items: center;
