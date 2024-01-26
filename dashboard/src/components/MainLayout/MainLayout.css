@@ -1,0 +1,145 @@
+.main-layout-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 10px;
+    background-color: #FAFAFB;
+}
+.file-upload-main-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+.top-heading{
+    display: flex;
+    margin-top: 30px;
+    width: 100%;
+    justify-content: space-between;
+}
+.heading-text{
+    font-size: 24px;
+    font-family: 'Figtree', sans-serif;
+    font-weight: 600;
+    margin-left: 20px;
+}
+.side-heading{
+    display: flex;
+    align-items: center;
+}
+.profile-image{
+    object-fit: cover;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-left: 20px;
+    margin-right: 30px;
+    cursor: pointer;
+}
+.notification-image{
+    width: 23px;
+    height: 23px;
+    cursor: pointer;
+}
+.file-upload-container{
+    display: flex;
+    justify-content: center;
+    flex-direction: column; 
+    align-items: center; 
+    width: 596px;
+    height: 368px;
+    background-color: #fff;
+    border-radius: 8px;
+}
+.file-upload-inside {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 564px;
+    height: 258px;
+    border: 1px dashed #EBEBEB;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+
+.file-upload-main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.file-upload-main-text{
+    font-size: 16px;
+    font-family: 'Figtree', sans-serif;
+    font-weight: 400;
+    color: #999CA0;
+}
+.browse-text{
+    font-size: 16px;
+    color: #605BFF;
+    font-family: 'Figtree', sans-serif;
+    font-weight: 400;
+    cursor: pointer;
+}
+.excel-logo-img{
+    width: 28px;
+    height: 28px;
+}
+
+  .upload-button{
+    display: flex;
+    width: 564px;
+    padding: 7px;
+    background-color: #605BFF;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 14px;
+    border: solid #605BFF;
+    border-radius: 8px;
+    cursor: pointer;
+    align-items: center;
+  }
+  .upload-icon-image{
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+  }
+
+  #csvInput{
+    display: none;
+  }
+
+  .remove-text{
+    display: block;
+    font-size: 14px;
+    color: #D33030;
+    text-align: center;
+    margin-top: 10px;
+    cursor: pointer;
+    font-weight: 400;
+  }
+  .uploaded-button{
+    display: flex;
+    width: 564px;
+    padding: 7px;
+    background-color: #605BFF;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 14px;
+    border: solid #605BFF;
+    border-radius: 8px;
+    cursor: pointer;
+    align-items: center;
+    opacity: 0.4;
+  }
+
+  @media (max-width: 768px) {
+    .main-layout-container {
+        display: flex;
+        flex-direction: column;
+        width: 800px;
+        padding: 10px;
+        background-color: #FAFAFB;
+    }
+  }
