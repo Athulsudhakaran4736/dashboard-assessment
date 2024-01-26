@@ -2,6 +2,14 @@
     display: flex;
 }
 
+.message {
+    color: red; /* Default color for error messages */
+}
+
+.message.success {
+    color: green; /* Color for success messages */
+}
+
 .left-container {
     display: flex;
     flex-direction: column;

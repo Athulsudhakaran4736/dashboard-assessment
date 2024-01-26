@@ -20,15 +20,38 @@ export default function SignIn() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
   
-    const handleChange = () => {
-      if (email === '' || password === '') {
-        setErrorMessage('Please enter credentials !!!!');
-        return;
-      }
-  
-      setErrorMessage('');
-      navigate('/dashboard/upload');
+    const handleChange = (e) => {
+        e.preventDefault();
+
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+        if (!email || !password) {
+            setErrorMessage('Please enter both email and password.');
+            setTimeout(() => {
+                setErrorMessage('');
+            }, 2000);
+            return;
+        }
+
+        if (!emailRegex.test(email)) {
+            setErrorMessage('Please enter a valid email address.');
+            setTimeout(() => {
+                setErrorMessage('');
+            }, 2000);
+            return;
+        }
+
+        // Assuming email and password validation is successful, you can set a success message
+        setErrorMessage('Login successful. Redirecting...');
+
+        // After 3 seconds, clear the success message and navigate to the dashboard
+        setTimeout(() => {
+            setErrorMessage('');
+            navigate('/dashboard/upload');
+        }, 1000);
     };
+    
+    
   return (
     <div className="main-container">
         <div className="left-container">
@@ -56,14 +79,17 @@ export default function SignIn() {
                     <button className="signin"><img src={google}/><span className="signin-text">Sign in with Google</span></button>
                     <button className="signin"><img src={apple}/><span className="signin-text">Sign in with Apple</span></button>
                 </div>
-                <form className="signin-form">
-                    <label htmlFor="username" className="signin-label" >Email Address</label>
-                    <input type='text' placeholder='Enter your email address' className="signin-input" value={email} onChange={ (e) => setEmail(e.target.value)}/>
+                <form className="signin-form" onSubmit={handleChange}>
+                    <label htmlFor="username" className="signin-label" type="email">Email Address</label>
+                    <input type='text' placeholder='Enter your email address' className="signin-input" value={email}  pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+                        title="Enter a valid email address"onChange={ (e) => setEmail(e.target.value)}/>
 
                     <label htmlFor="password" className="signin-label">Password</label>
                     <input type='password' placeholder='Enter your password' className="signin-input" value={password} onChange={ (e) => setPassword(e.target.value)}/>
                     <p className="forgot-password">Forgot Password?</p>
-                    {errorMessage && <p className="error-message">{errorMessage}</p>}
+                    <p className={`message ${errorMessage.includes('Login successful') ? 'success' : 'error'}`}>
+                         {errorMessage}
+                    </p>
                     <button className="sigin-button" onClick={handleChange}>Sign In</button>
                 </form>
                 <p className="account-text">{`Don't have an account?`}<span className="register-text">Register here</span></p>
