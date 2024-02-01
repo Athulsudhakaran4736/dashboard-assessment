@@ -4,7 +4,6 @@ import github from "../../assets/github.svg";
 import twitter from "../../assets/twitter.svg";
 import linkedin from "../../assets/linkedin.svg";
 import discord from "../../assets/discord.svg"
-import google from "../../assets/google-icon.svg";
 import apple from "../../assets/apple.svg"
 import githubres from "../../assets/github-res.svg";
 import twitterres from "../../assets/twitter-res.svg";
@@ -100,6 +99,7 @@ export default function SignIn() {
                 <h2 className="signin-heading">Sign In</h2>
                 <p className="signin-para">Sign in to your account</p>
                 <div className="signin-with">
+                <div className="signin-with google-login-container">
                     <GoogleLogin
                         clientId={clientId}
                         onSuccess={handleGoogleLoginSuccess}
@@ -107,9 +107,9 @@ export default function SignIn() {
                         cookiePolicy={'http://localhost:5174'}
                         isSignedIn={true}
                     >
-                      <button className="signin"><img src={google}/><span className="signin-text">Sign in with Google</span></button>   
                     </GoogleLogin>
                     <button className="signin"><img src={apple}/><span className="signin-text">Sign in with Apple</span></button>
+                </div>
                 </div>
                 <form className="signin-form" onSubmit={handleChange}>
                     <label htmlFor="username" className="signin-label" type="email">Email Address</label>
