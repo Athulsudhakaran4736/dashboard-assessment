@@ -13,6 +13,7 @@ import discordres from "../../assets/discord-res.svg";
 import lineImageRes from "../../assets/res-logo.svg";
 import { useNavigate } from 'react-router-dom';
 import { useState } from "react";
+import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
 
 export default function SignIn() {
     const navigate = useNavigate();
@@ -50,9 +51,32 @@ export default function SignIn() {
             navigate('/dashboard/upload');
         }, 1000);
     };
-    
-    
+    const handleGoogleLoginSuccess = (response) => {
+        // Handle successful Google login
+        console.log(response);
+
+        // You can send the Google user data to your backend for authentication
+
+        // For now, simulate a successful login
+        setErrorMessage('Login successful. Redirecting...');
+
+        // After 3 seconds, clear the success message and navigate to the dashboard
+        setTimeout(() => {
+            setErrorMessage('');
+            navigate('/dashboard/upload');
+        }, 1000);
+    };
+
+    const handleGoogleLoginFailure = (error) => {
+        // Handle Google login failure
+        console.error(error);
+
+        // You can display an error message if needed
+        setErrorMessage('Google login failed. Please try again.');
+    };
+    const clientId = "236177837354-3ltcag2b9n19q956t93opr6om5ujbubo.apps.googleusercontent.com";
   return (
+    <GoogleOAuthProvider clientId={clientId}>
     <div className="main-container">
         <div className="left-container">
             <div className="logo-img">     
@@ -76,7 +100,15 @@ export default function SignIn() {
                 <h2 className="signin-heading">Sign In</h2>
                 <p className="signin-para">Sign in to your account</p>
                 <div className="signin-with">
-                    <button className="signin"><img src={google}/><span className="signin-text">Sign in with Google</span></button>
+                    <GoogleLogin
+                        clientId={clientId}
+                        onSuccess={handleGoogleLoginSuccess}
+                        onFailure={handleGoogleLoginFailure}
+                        cookiePolicy={'http://localhost:5174'}
+                        isSignedIn={true}
+                    >
+                      <button className="signin"><img src={google}/><span className="signin-text">Sign in with Google</span></button>   
+                    </GoogleLogin>
                     <button className="signin"><img src={apple}/><span className="signin-text">Sign in with Apple</span></button>
                 </div>
                 <form className="signin-form" onSubmit={handleChange}>
@@ -102,5 +134,6 @@ export default function SignIn() {
             </div>
         </div>
     </div>
+    </GoogleOAuthProvider>
   )
 }
